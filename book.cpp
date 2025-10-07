@@ -37,16 +37,17 @@ std::string Book::getType() const {
 // OPERATORS
 // the purpose of these is to sort the books in order
 // basically we are implementing the std::sort methods
-// we have three main comparisions... 
+// we have to define two main comparisions (< and =)
+// this is the operator overload specific code that will be implemented
 
 bool Book::operator<(const Book& other) const {
     if (isbn != other.isbn) {
-        return isbn < other.isbn;  // Lower ISBN comes first
+        return isbn < other.isbn;  // lower ISBN comes first
     }
   
     if (type != other.type) {
-        // Define custom priority: new < used < digital
-        // Helper lambda function to assign numeric weights to types
+        // define custom priority: new < used < digital
+        // helper lambda function to assign numeric weights to types
         auto typeOrder = [](const std::string& t) -> int {
             if (t == "new") return 1;      // Highest priority
             if (t == "used") return 2;     // Middle priority  
@@ -58,7 +59,7 @@ bool Book::operator<(const Book& other) const {
         return typeOrder(type) < typeOrder(other.type);
     }
     
-    // Use built-in string comparison for alphabetical order
+    // use built-in string comparison for alphabetical order
     return language < other.language;
 }
 

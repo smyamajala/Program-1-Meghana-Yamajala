@@ -1,4 +1,4 @@
-//killing myself before I even start the assignment 
+// killing myself before I even start the assignment 
 #ifndef BOOK_H
 #define BOOK_H
 

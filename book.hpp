@@ -36,7 +36,8 @@ public:
 // and then compare to other Books to sort them out 
 // this is for the std::sort which will help us with the binary and recursive searches
 
-friend std::ostream& operator<<(std::ostream& os, const Book& book); // accesses private class members as well
+friend std::ostream& operator<<(std::ostream& os, const Book& book); 
+// accesses private class members as well
 };
 
 

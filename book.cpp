@@ -34,6 +34,49 @@ std::string Book::getType() const {
   return type; // getting the book type
 }
 
+// OPERATORS
+// the purpose of these is to sort the books in order
+// basically we are implementing the std::sort methods
+// we have three main comparisions... 
 
+bool Book::operator<(const Book& other) const {
+    if (isbn != other.isbn) {
+        return isbn < other.isbn;  // Lower ISBN comes first
+    }
+  
+    if (type != other.type) {
+        // Define custom priority: new < used < digital
+        // Helper lambda function to assign numeric weights to types
+        auto typeOrder = [](const std::string& t) -> int {
+            if (t == "new") return 1;      // Highest priority
+            if (t == "used") return 2;     // Middle priority  
+            if (t == "digital") return 3;  // Lowest priority
+            return 0; // fallback for unknown types
+        };
+        
+        // compare using our custom priority system
+        return typeOrder(type) < typeOrder(other.type);
+    }
+    
+    // Use built-in string comparison for alphabetical order
+    return language < other.language;
+}
+
+//EQUALITY OPERATOR (==)
+// defines when two Book objects are considered identical
+bool Book::operator==(const Book& other) const {
+    // All three fields must match exactly for books to be equal
+    return (isbn == other.isbn) && 
+           (language == other.language) && 
+           (type == other.type);
+}
+
+std::ostream& operator<<(std::ostream& os, const Book& book) {
+    // Output format: "ISBN,language,type"
+    os << book.isbn << "," << book.language << "," << book.type;
+    
+    // Return the stream to allow chaining: cout << book1 << book2
+    return os;
+}
 
 

@@ -1,4 +1,4 @@
-#indef SEARCH_H
+#ifdef SEARCH_H
 #define SEARCH_H
 
 #include <vector>

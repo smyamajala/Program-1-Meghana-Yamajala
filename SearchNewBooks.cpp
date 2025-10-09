@@ -4,16 +4,17 @@
 #include <string>
 #include <sstream>
 #include <algorithm>
-#include "book.h"
-#include "search.h"
-#include "timer.h"
+#include "book.hpp"
+#include "search.hpp"
+#include "timer.hpp"
 
-/**
- * Reads books from a file and populates a vector
- * @param filename: the file to read from
- * @param books: vector to fill with Book objects
- * @return: true if successful, false if error
- */
+// READ FILE
+// because I have to read from the files I just used a blurb of code I used a lot last quarter 
+// basically the first thing is to make sure the file the user wants to read is valid
+// then we read line by line and get the different values 
+// we are also seperating the components of the data based on the "," token
+// this is basically PARSING each component
+
 bool readBooksFromFile(const std::string& filename, std::vector<Book>& books) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -51,12 +52,7 @@ bool readBooksFromFile(const std::string& filename, std::vector<Book>& books) {
     return true;
 }
 
-/**
- * Writes the result count to an output file
- * @param filename: the file to write to
- * @param count: the number of books found
- * @return: true if successful, false if error
- */
+
 bool writeResultToFile(const std::string& filename, int count) {
     std::ofstream file(filename);
     if (!file.is_open()) {
